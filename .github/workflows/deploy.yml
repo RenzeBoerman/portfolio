@@ -1,20 +1,18 @@
-name: Deploy
- 
+name: deploy
+
 on:
   push:
-    branches:
-      - main
-      - test
- 
+    branches: test
+
 jobs:
-  Deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: self-hosted
     steps:
       - uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSHKEY }}
-          port: ${{ secrets.PORT }}
+          key:      ${{ secrets.KEY }} 
+          host:     ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          port:     ${{ secrets.PORT }}
           script: |
-            ls
+          ls
